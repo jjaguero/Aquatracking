@@ -24,7 +24,7 @@ export function LoginForm({ onSubmit }: { onSubmit: (values: LoginFormValues) =>
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-full max-w-sm mx-auto">
       <div className="space-y-2">
-        <label htmlFor="email" className="text-sm font-medium">Email</label>
+        <label htmlFor="email" className="text-sm font-semibold text-gray-700">Email</label>
         <Input
           id="email"
           type="email"
@@ -32,13 +32,14 @@ export function LoginForm({ onSubmit }: { onSubmit: (values: LoginFormValues) =>
           {...register("email")}
           autoComplete="email"
           aria-invalid={!!errors.email}
+          className="h-12 rounded-lg border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 text-base px-4"
         />
         {errors.email?.message && (
-          <p className="text-xs text-red-500 mt-1 mb-2">{errors.email.message}</p>
+          <p className="text-xs text-red-500 mt-1 mb-2 font-medium">{errors.email.message}</p>
         )}
       </div>
       <div className="space-y-2">
-        <label htmlFor="password" className="text-sm font-medium">Contraseña</label>
+        <label htmlFor="password" className="text-sm font-semibold text-gray-700">Contraseña</label>
         <Input
           id="password"
           type="password"
@@ -46,13 +47,18 @@ export function LoginForm({ onSubmit }: { onSubmit: (values: LoginFormValues) =>
           {...register("password")}
           autoComplete="current-password"
           aria-invalid={!!errors.password}
+          className="h-12 rounded-lg border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 text-base px-4"
         />
         {errors.password?.message && (
-          <p className="text-xs text-red-500 mt-1 mb-2">{errors.password.message}</p>
+          <p className="text-xs text-red-500 mt-1 mb-2 font-medium">{errors.password.message}</p>
         )}
       </div>
-      <Button type="submit" className="w-full" disabled={isSubmitting}>
-        Iniciar sesión
+      <Button
+        type="submit"
+        className="w-full h-12 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold text-base shadow-md hover:from-blue-600 hover:to-cyan-600 transition-all duration-150"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Ingresando..." : "Iniciar sesión"}
       </Button>
     </form>
   );
